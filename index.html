@@ -26,6 +26,9 @@
                 })
                 .then(function(response) {
                     img.src = response.data.images.original.url;
+                })
+                .catch(()=>{
+                    input.value="ERROR GIF DOES NOT EXIST";
                 });
         })
     </script>
