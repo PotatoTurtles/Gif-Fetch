@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gif Displayer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div>
+        <button>New Gif</button>
+        <input type="text">
+    </div>
+    <img src="#" alt="Funny Gif">
+    <script defer>
+        let img = document.querySelector('img');
+        let button = document.querySelector('button');
+        let input = document.querySelector('input');
+        
+        button.addEventListener('click',()=>{
+            let send = input.value?input.value:'cats';
+
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=aNjMxVaTseGYvtTX0ShrHZ2pAIlwpeVJ&s=${send}`, {mode: 'cors'})
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(response) {
+                    img.src = response.data.images.original.url;
+                });
+        })
+    </script>
+</body>
+</html>
